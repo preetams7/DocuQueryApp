@@ -28,10 +28,10 @@ if uploaded_file is not None:
         retrieval_chain = retrieval_chain_ob.get_chain()
 
         if question:
-            with st.spinner("Thinking ...")
-            answer = retrieval_chain({"question":question}, return_only_outputs=True)
-            answer = answer['answer']
-            st.write(answer)
+            with st.spinner("Thinking ..."):
+                answer = retrieval_chain({"question":question}, return_only_outputs=True)
+                answer = answer['answer']
+                st.write(answer)
     else:
         st.error("Please upload a valid PDF file.")
 
