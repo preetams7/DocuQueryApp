@@ -17,7 +17,10 @@ uploaded_file = st.file_uploader("Upload a source PDF file to query", type=["pdf
 if uploaded_file is not None:
     if uploaded_file.type == "application/pdf":
         st.success("The uploaded file is a valid PDF.")
-        save_path = os.path.join("resources", uploaded_file.name)
+        folder_path = "resources"
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+        save_path = os.path.join(folder_path, uploaded_file.name)
         with open(save_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
         question = st.text_input("Enter your question here", key="question")
