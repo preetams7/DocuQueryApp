@@ -25,14 +25,13 @@ class DocumentRetrievalChain:
 
     def get_llm(self):
         
-        llm = OpenAI(temperature=0.4, max_tokens=100)
-        self.combine_chain = StuffDocumentsChain(llm=llm)
+        self.llm = OpenAI(temperature=0.4, max_tokens=100)
 
     def get_chain(self):
         self.get_chunks()
         self.get_vectordb()
         self.get_llm()
-        chain = RetrievalQAWithSourcesChain(llm=self.combine_chain, retriever=self.vectordb.as_retriever(), chain_type="stuff")
+        chain = RetrievalQAWithSourcesChain(llm=self.llm, retriever=self.vectordb.as_retriever(), chain_type="stuff")
         return chain
 
 
