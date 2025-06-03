@@ -5,10 +5,10 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains import RetrievalQAWithSourcesChain
 from langchain import OpenAI
-from dotenv import load_dotenv
+
 import os
 
-load_dotenv()
+
 class DocumentRetrievalChain:
     def __init__(self):
         for filename in os.listdir("resources"):
