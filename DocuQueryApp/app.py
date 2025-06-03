@@ -21,7 +21,8 @@ if uploaded_file is not None:
             f.write(uploaded_file.getbuffer())
         
         question = st.text_input("Enter your question here", key="question")
-        retrieval_chain_ob = DocumentRetrievalChain("uploaded.pdf")
+        with open("uploaded.pdf", "rb") as f:
+            retrieval_chain_ob = DocumentRetrievalChain(f)
         retrieval_chain = retrieval_chain_ob.get_chain()
 
         if question:
