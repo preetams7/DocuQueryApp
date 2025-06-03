@@ -10,12 +10,9 @@ import os
 
 
 class DocumentRetrievalChain:
-    def __init__(self):
-        for filename in os.listdir("resources"):
-            if filename.endswith(".pdf"):
-                loader = PyPDFLoader(f"resources/{filename}")
-                self.loaded_doc = loader.load()
-                break
+    def __init__(self, pdfdoc):
+        loader = PyPDFLoader(pdfdoc)
+        self.loaded_doc = loader.load()
 
     def get_chunks(self):
         splitter = RecursiveCharacterTextSplitter(separators=["\n\n", "\n", "\t"], chunk_size=400, chunk_overlap=50)
