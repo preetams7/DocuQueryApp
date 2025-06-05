@@ -5,14 +5,14 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains import RetrievalQAWithSourcesChain
 from langchain import OpenAI
-from langchain.chains.combine_documents import StuffDocumentsChain
+
 
 import os
 
 
 class DocumentRetrievalChain:
-    def __init__(self, pdfdoc):
-        loader = PyPDFLoader(pdfdoc)
+    def __init__(self, urls):
+        loader = UnstructuredURLLoader(pdfdoc)
         self.loaded_doc = loader.load()
 
     def get_chunks(self):
