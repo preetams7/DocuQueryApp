@@ -11,10 +11,13 @@ import os
 
 
 class DocumentRetrievalChain:
-    def __init__(self, urls):
-        loader = UnstructuredURLLoader(pdfdoc)
+    def __init__(self, pdfdocpath):
+        try:
+            loader = PyPDFLoader(pdfdocpath)
+        except:
+            print("Code execution from external notebook, reading from external notebook project folder")
+            loader = PyPDFLoader(f"../{pdfdocpath}")
         self.loaded_doc = loader.load()
-
     def get_chunks(self):
         splitter = RecursiveCharacterTextSplitter(separators=["\n\n", "\n", "\t"], chunk_size=400, chunk_overlap=50)
         self.chunks = splitter.split_documents(self.loaded_doc)
