@@ -30,7 +30,7 @@ if uploaded_file is not None:
                 answer = answer['answer']
                 st.write(answer)
         #Removing uploaded file after indexing
-        os.remove("uploaded.pdf")
+        # os.remove("uploaded.pdf")
     else:
         st.error("Please upload a valid PDF file.")
 
